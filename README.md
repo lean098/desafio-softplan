@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+# **Desafio Softplan**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### **Desenvolver uma aplicação web contendo os seguintes requisitos:**
 
-## Available Scripts
+- [x] A aplicação deverá estar protegida por login e senha;
+- [x] Deverá existir 2 tipos de perfis (`ADMIN` e `USER`);
+- [x] Deverá possuir interface para pesquisa dos usuários cadastrados;
+- [x] Deverá possuir interface para cadastro (`CRUD`) dos usuários da aplicação;
+- [x] Deverá possuir interface para visualizar “Meu perfil”, podendo alterar a senha;
+- [x] Deverá possuir a opção de “Sair” da aplicação;
+- [x] Deverá aparecer o nome e/ou foto do usuário no `header` da aplicação;
+- [x] somente ADMIN pode deletar usuário;
 
-In the project directory, you can run:
+### **Regras de negócio:**
 
-### `yarn start`
+- [x] O usuário com acesso `ADMIN` poderá executar cadastro (`CRUD`) de outros usuários e visualizar;
+- [x] O usuário com acesso `USER` poderá apenas visualizar os usuários do sistema;
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **Requisitos não funcionais:**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [ ] Testes unitários;
+- [x] O frontend deverá ser desenvolvido em React;
+- [x] Utilizar algum mock http, exemplo: [json-server](https://github.com/typicode/json-server);
+- [x] Utilizar algum framework UI (Material-UI, Bootstrap, AntDesign, etc…);
 
-### `yarn test`
+### **Passo a Passo pra executar o projeto**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone o repositorio:
 
-### `yarn build`
+- ### `git clone here`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Instale as dependências:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ### `yarn install ou somente yarn`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Execute o projeto:
 
-### `yarn eject`
+- ### `yarn start`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Abra [http://localhost:3001](http://localhost:3001) caso não seja aberto automaticamente;
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para rodar os testes, execute o comando abaixo:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- ### `yarn test`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### **Passos iniciais pra usar o projeto**
 
-## Learn More
+- Fazer cadastro (foto é opcional);
+- Ou usar usuário pré cadastrado
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+Email: teste@gmail.com
+Senha: 123456
+```

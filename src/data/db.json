@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": "267fd5f2-3f5f-4a8e-9964-73dfb50b0738",
+      "firstName": "Teste",
+      "lastName": "teste",
+      "birthDate": "15/04/1997",
+      "email": "teste@gmail.com",
+      "document": "123.456.789-00",
+      "password": "MTIzNDU2",
+      "role": "ADMIN"
+    }
+  ]
+}

@@ -27,7 +27,7 @@
 
 Clone o repositorio:
 
-- ### `git clone here`
+- ### `git clone git@github.com:lean098/desafio-softplan.git`
 
 Instale as dependências:
 

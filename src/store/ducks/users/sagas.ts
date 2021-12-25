@@ -81,6 +81,7 @@ function* login({
   }
 }
 
+// Create User
 function* create({
   payload,
 }: ReturnType<typeof UsersActions.createUserRequest>): any {

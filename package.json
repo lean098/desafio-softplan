@@ -38,6 +38,7 @@
   },
   "scripts": {
     "start": "concurrently \"PORT=3001 react-scripts start\" \"json-server --watch src/data/db.json\" ",
+    "cypress:open": "cypress open",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -66,6 +67,10 @@
     "@types/redux-mock-store": "^1.0.3",
     "@types/uuid": "^8.3.3",
     "concurrently": "^6.4.0",
+    "cypress": "9.2.0",
+    "cypress-localstorage-commands": "^1.6.1",
+    "cypress-wait-until": "^1.7.2",
+    "eslint-plugin-cypress": "^2.12.1",
     "json-server": "^0.17.0",
     "redux-mock-store": "^1.5.4"
   }

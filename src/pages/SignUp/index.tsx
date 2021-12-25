@@ -187,6 +187,9 @@ const SignUp: React.FC = () => {
                 helperText={
                   errors.firstName && touched.firstName && errors.firstName
                 }
+                inputProps={{
+                  'data-cy': 'firstName',
+                }}
                 margin='normal'
                 name='firstName'
                 required
@@ -204,6 +207,9 @@ const SignUp: React.FC = () => {
                 helperText={
                   errors.lastName && touched.lastName && errors.lastName
                 }
+                inputProps={{
+                  'data-cy': 'lastName',
+                }}
                 margin='normal'
                 name='lastName'
                 required
@@ -229,6 +235,9 @@ const SignUp: React.FC = () => {
                     helperText={
                       errors.document && touched.document && errors.document
                     }
+                    inputProps={{
+                      'data-cy': 'document',
+                    }}
                     margin='normal'
                     name='document'
                     required
@@ -253,6 +262,9 @@ const SignUp: React.FC = () => {
                     helperText={
                       errors.birthDate && touched.birthDate && errors.birthDate
                     }
+                    inputProps={{
+                      'data-cy': 'birthDate',
+                    }}
                     margin='normal'
                     required
                     fullWidth
@@ -266,6 +278,9 @@ const SignUp: React.FC = () => {
               <TextField
                 error={Boolean(errors.email && touched.email)}
                 helperText={errors.email && touched.email && errors.email}
+                inputProps={{
+                  'data-cy': 'email',
+                }}
                 margin='normal'
                 required
                 fullWidth
@@ -283,6 +298,9 @@ const SignUp: React.FC = () => {
                 helperText={
                   errors.password && touched.password && errors.password
                 }
+                inputProps={{
+                  'data-cy': 'password',
+                }}
                 margin='normal'
                 required
                 fullWidth
@@ -299,6 +317,9 @@ const SignUp: React.FC = () => {
               <TextField
                 error={Boolean(errors.role && touched.role)}
                 helperText={errors.role && touched.role && errors.role}
+                inputProps={{
+                  'data-cy': 'role',
+                }}
                 margin='normal'
                 fullWidth
                 id='role'
@@ -309,7 +330,7 @@ const SignUp: React.FC = () => {
                 onChange={handleChange}
                 value={values.role}>
                 {CONST_RULES.RULES.map(({ KEY, VALUE }) => (
-                  <MenuItem key={KEY} value={KEY}>
+                  <MenuItem key={KEY} value={KEY} data-cy={KEY}>
                     {VALUE}
                   </MenuItem>
                 ))}
@@ -320,12 +341,15 @@ const SignUp: React.FC = () => {
             type='submit'
             fullWidth
             variant='contained'
+            data-cy='submit'
             sx={{ mt: 3, mb: 2 }}>
             Cadastrar
           </Button>
           <Grid container justifyContent='center'>
             <Grid item>
-              <Link to={loggedUser?.id ? PATH.USERS : PATH.HOME}>
+              <Link
+                to={loggedUser?.id ? PATH.USERS : PATH.HOME}
+                data-cy='navigate-link'>
                 {loggedUser?.id ? 'Voltar' : 'Tenho cadastro'}
               </Link>
             </Grid>

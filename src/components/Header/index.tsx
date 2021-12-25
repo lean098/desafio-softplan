@@ -85,6 +85,7 @@ const Header: React.FC = () => {
                     edge='end'
                     aria-label='account of current user'
                     aria-haspopup='true'
+                    data-cy='open-menu'
                     onClick={handleProfileMenuOpen}
                     color='inherit'>
                     {loggedUser.picture ? (
@@ -118,8 +119,12 @@ const Header: React.FC = () => {
           }}
           open={isMenuOpen}
           onClose={() => setAnchorEl(null)}>
-          <MenuItem onClick={handleProfile}>Perfil</MenuItem>
-          <MenuItem onClick={handleLogout}>Sair</MenuItem>
+          <MenuItem onClick={handleProfile} data-cy='profile'>
+            Perfil
+          </MenuItem>
+          <MenuItem onClick={handleLogout} data-cy='logout'>
+            Sair
+          </MenuItem>
         </Menu>
       </Box>
     ),

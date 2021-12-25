@@ -76,6 +76,9 @@ const SignIn: React.FC = () => {
                 role='textbox'
                 error={Boolean(errors.email && touched.email)}
                 helperText={errors.email && touched.email && errors.email}
+                inputProps={{
+                  'data-cy': 'email',
+                }}
                 margin='normal'
                 required
                 fullWidth
@@ -91,6 +94,7 @@ const SignIn: React.FC = () => {
               <TextField
                 inputProps={{
                   'data-testid': 'password',
+                  'data-cy': 'password',
                 }}
                 error={Boolean(errors.password && touched.password)}
                 helperText={
@@ -113,12 +117,15 @@ const SignIn: React.FC = () => {
             type='submit'
             fullWidth
             variant='contained'
+            data-cy='submit'
             sx={{ mt: 3, mb: 2 }}>
             Entrar
           </Button>
           <Grid container justifyContent='center'>
             <Grid item>
-              <Link to={PATH.REGISTER}>Fazer cadastro</Link>
+              <Link to={PATH.REGISTER} data-cy='register'>
+                Fazer cadastro
+              </Link>
             </Grid>
           </Grid>
         </Box>

@@ -1,0 +1,9 @@
+{
+  "firstName": "Novo",
+  "lastName": "usuário",
+  "document": "12345678900",
+  "birthDate": "13041995",
+  "email": "novo@gmail.com",
+  "password": "123456",
+  "role": "USER"
+}

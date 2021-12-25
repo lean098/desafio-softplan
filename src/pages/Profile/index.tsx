@@ -177,6 +177,9 @@ const Profile: React.FC = () => {
                 helperText={
                   errors.password && touched.password && errors.password
                 }
+                inputProps={{
+                  'data-cy': 'new-password',
+                }}
                 margin='normal'
                 required
                 fullWidth
@@ -192,6 +195,7 @@ const Profile: React.FC = () => {
           <Button
             disabled={!values.password}
             type='submit'
+            data-cy='submit'
             fullWidth
             variant='contained'
             sx={{ mt: 3, mb: 2 }}>

@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "target": "es5",
     "lib": ["es6", "dom", "dom.iterable", "esnext"],
+    "types": ["cypress", "cypress-wait-until", "cypress-localstorage-commands"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

@@ -157,6 +157,7 @@ const Details: React.FC = () => {
           </Grid>
           {loggedUser?.role === 'ADMIN' && (
             <Button
+              data-cy='remove'
               fullWidth
               variant='contained'
               sx={{ mt: 3, mb: 2, bgcolor: 'red' }}

@@ -106,6 +106,7 @@ const Users: React.FC = () => {
                   placeholder='Digite o nome do usuário…'
                   inputProps={{
                     'aria-label': 'search',
+                    'data-cy': 'search',
                   }}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -147,6 +148,7 @@ const Users: React.FC = () => {
               .map((user: UserInterface) => (
                 <Grid item key={user.id} xs={12} sm={6} md={4}>
                   <Card
+                    data-cy='card'
                     sx={{
                       height: '100%',
                       display: 'flex',
@@ -174,6 +176,7 @@ const Users: React.FC = () => {
                         TransitionComponent={Zoom}
                         arrow>
                         <IconButton
+                          data-cy={`user__${user.id}`}
                           onClick={() => {
                             history.push(`/user/${user.id}`, { state: user });
                           }}>
@@ -194,6 +197,7 @@ const Users: React.FC = () => {
                 TransitionComponent={Zoom}
                 arrow>
                 <Fab
+                  data-cy='add-user'
                   sx={{
                     position: 'fixed',
                     bottom: 16,

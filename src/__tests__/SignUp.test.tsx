@@ -1,70 +1,104 @@
-import React from 'react';
+// Constants
+import { defaultUser } from 'constants/defaultUser';
 
-import { Provider } from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
-import configureStore from 'redux-mock-store';
-
-import { Router } from 'react-router-dom';
-
-import { createMemoryHistory } from 'history';
-
-import '@testing-library/jest-dom';
+// Utils
 import {
   screen,
   render,
-  fireEvent,
   waitFor,
   RenderResult,
-} from '@testing-library/react';
+  fireEvent,
+} from 'utils/testUtils';
 
-import rootSaga from 'store/ducks/rootSaga';
-
-import Users from 'pages/Users';
+// Pages
+import { SignUp } from 'pages/SignUp';
 
 const renderComponent = (): RenderResult => {
-  const history = createMemoryHistory();
-  const sagaMiddleware = createSagaMiddleware();
-
-  const mockStore = configureStore([sagaMiddleware]);
-
-  const INITIAL_STATE = {
-    users: {
-      usersList: [],
-      loggedUser: {
-        id: '267fd5f2-3f5f-4a8e-9964-73dfb50b0738',
-        firstName: 'Teste',
-        lastName: 'teste',
-        birthDate: '15/04/1997',
-        email: 'teste@gmail.com',
-        document: '123.456.789-00',
-        role: 'ADMIN',
-      },
-    },
-  };
-
-  const store = mockStore(INITIAL_STATE);
-
-  sagaMiddleware.run(rootSaga);
-
-  return render(
-    <Provider store={store}>
-      <Router history={history}>
-        <Users />
-      </Router>
-    </Provider>,
-  );
+  return render(<SignUp />);
 };
 
-// Lista vazia
-it('render empty users list', async () => {
-  renderComponent(); // Modifcar pra poder passar o default user -> com o usersList: [] e etc...
+describe('SignUp', () => {
+  it('should allow register user', async () => {
+    renderComponent();
 
-  const emptyLabel = screen.getByRole('heading', {
-    name: /os usuários cadastrados aparecerão aqui\./i,
+    const firstNameField = screen.getByTestId('firstName') as HTMLInputElement;
+    expect(firstNameField).toBeInTheDocument();
+    expect(firstNameField).toBeEnabled();
+    expect(firstNameField.value).toBe('');
+    await waitFor(() => {
+      fireEvent.change(firstNameField, {
+        target: { value: defaultUser.firstName },
+      });
+    });
+    expect(firstNameField.value).toEqual(defaultUser.firstName);
+
+    const lastNameField = screen.getByTestId('lastName') as HTMLInputElement;
+    expect(lastNameField).toBeInTheDocument();
+    expect(lastNameField).toBeEnabled();
+    expect(lastNameField.value).toBe('');
+    await waitFor(() => {
+      fireEvent.change(lastNameField, {
+        target: { value: defaultUser.lastName },
+      });
+    });
+    expect(lastNameField.value).toEqual(defaultUser.lastName);
+
+    const documentField = screen.getByTestId('document') as HTMLInputElement;
+    expect(documentField).toBeInTheDocument();
+    expect(documentField).toBeEnabled();
+    expect(documentField.value).toBe('');
+    await waitFor(() => {
+      fireEvent.change(documentField, {
+        target: { value: defaultUser.document },
+      });
+    });
+    expect(documentField.value).toEqual(defaultUser.document);
+
+    const birthDateField = screen.getByTestId('birthDate') as HTMLInputElement;
+    expect(birthDateField).toBeInTheDocument();
+    expect(birthDateField).toBeEnabled();
+    expect(birthDateField.value).toBe('');
+    await waitFor(() => {
+      fireEvent.change(birthDateField, {
+        target: { value: defaultUser.birthDate },
+      });
+    });
+    expect(birthDateField.value).toEqual(defaultUser.birthDate);
+
+    const emailField = screen.getByTestId('email') as HTMLInputElement;
+    expect(emailField).toBeInTheDocument();
+    expect(emailField).toBeEnabled();
+    expect(emailField.value).toBe('');
+    await waitFor(() => {
+      fireEvent.change(emailField, { target: { value: defaultUser.email } });
+    });
+    expect(emailField.value).toEqual(defaultUser.email);
+
+    const passwordField = screen.getByTestId('password') as HTMLInputElement;
+    expect(passwordField).toBeInTheDocument();
+    expect(passwordField).toBeEnabled();
+    expect(passwordField.value).toBe('');
+    await waitFor(() => {
+      fireEvent.change(passwordField, {
+        target: { value: defaultUser.password },
+      });
+    });
+    expect(passwordField.value).toEqual(defaultUser.password);
+
+    const roleField = screen.getByTestId('role') as HTMLSelectElement;
+    expect(roleField).toBeInTheDocument();
+    expect(roleField).toBeEnabled();
+    expect(roleField.value).toBe('');
+    await waitFor(() => {
+      fireEvent.change(roleField, { target: { value: defaultUser.role } });
+    });
+    expect(roleField.value).toEqual(defaultUser.role);
+
+    const registerButton = screen.getByTestId('submit') as HTMLButtonElement;
+    expect(registerButton).toBeInTheDocument();
+    expect(registerButton).toBeEnabled();
+    await waitFor(() => {
+      fireEvent.click(registerButton);
+    });
   });
-  expect(emptyLabel).toBeInTheDocument();
-
-  const signUpButton = screen.getByRole('button', { name: /cadastrar/i });
-  expect(signUpButton).toBeInTheDocument();
-  expect(signUpButton).toBeEnabled();
 });

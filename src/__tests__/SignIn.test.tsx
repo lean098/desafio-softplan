@@ -1,87 +1,56 @@
-import React from 'react';
+// @ts-ignore
+import { LocalStorageMock } from '@react-mock/localstorage';
 
-import { Provider } from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
-import configureStore from 'redux-mock-store';
+// Constants
+import { defaultUser } from 'constants/defaultUser';
 
-import { Router } from 'react-router-dom';
-
-import { createMemoryHistory } from 'history';
-
-import '@testing-library/jest-dom';
+// Utils
 import {
   screen,
   render,
-  fireEvent,
   waitFor,
   RenderResult,
-} from '@testing-library/react';
+  fireEvent,
+} from 'utils/testUtils';
 
-import { rest } from 'msw';
-
-import rootSaga from 'store/ducks/rootSaga';
-
+// Pages
 import SignIn from 'pages/SignIn';
 
-const fakeUserResponse = { token: 'fake_user_token' };
-
-export const handlers = [
-  rest.get('/users', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(fakeUserResponse));
-  }),
-];
-
 const renderComponent = (): RenderResult => {
-  const history = createMemoryHistory();
-  const sagaMiddleware = createSagaMiddleware();
-
-  const mockStore = configureStore([sagaMiddleware]);
-
-  const INITIAL_STATE = {};
-  const store = mockStore(INITIAL_STATE);
-
-  sagaMiddleware.run(rootSaga);
-
   return render(
-    <Provider store={store}>
-      <Router history={history}>
-        <SignIn />
-      </Router>
-    </Provider>,
+    <LocalStorageMock items={{}}>
+      <SignIn />
+    </LocalStorageMock>,
   );
 };
 
-it('allows the user to login successfully', async () => {
-  renderComponent();
+describe('Login', () => {
+  it('should allows the user to log in', async () => {
+    renderComponent();
 
-  const email = screen.getByRole('textbox', { name: /email/i });
-  expect(email).toBeInTheDocument();
-  await waitFor(() => {
-    fireEvent.change(email, {
-      target: { value: 'lean@gmail.com' },
+    const email = screen.getByRole('textbox', {
+      name: /email/i,
+    }) as HTMLInputElement;
+    expect(email).toBeInTheDocument();
+    expect(email).toBeEnabled();
+    expect(email.value).toBe('');
+    fireEvent.change(email, { target: { value: defaultUser.email } });
+    expect(email.value).toEqual(defaultUser.email);
+
+    const password = screen.getByTestId(/password/i) as HTMLInputElement;
+    expect(password).toBeInTheDocument();
+    expect(password).toBeEnabled();
+    expect(password.value).toBe('');
+    fireEvent.change(password, { target: { value: defaultUser.password } });
+    expect(password.value).toEqual(defaultUser.password);
+
+    const loginButton = screen.getByRole('button', {
+      name: /entrar/i,
+    }) as HTMLButtonElement;
+    expect(loginButton).toBeInTheDocument();
+    expect(loginButton).toBeEnabled();
+    await waitFor(() => {
+      fireEvent.click(loginButton);
     });
   });
-
-  const password = screen.getByTestId(/password/i);
-  expect(password).toBeInTheDocument();
-  await waitFor(() => {
-    fireEvent.change(screen.getByTestId(/password/i), {
-      target: { value: '123' },
-    });
-  });
-
-  const loginButton = screen.getByRole('button', { name: /entrar/i });
-  expect(loginButton).toBeInTheDocument();
-  expect(loginButton).toBeEnabled();
-  await waitFor(() => {
-    fireEvent.click(loginButton);
-  });
-
-  await waitFor(() => {
-    localStorage.setItem('token', 'fake_user_token');
-  });
-
-  const token = localStorage.getItem('token');
-
-  expect(token).toEqual('fake_user_token');
 });

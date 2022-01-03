@@ -189,6 +189,7 @@ const SignUp: React.FC = () => {
                 }
                 inputProps={{
                   'data-cy': 'firstName',
+                  'data-testid': 'firstName',
                 }}
                 margin='normal'
                 name='firstName'
@@ -209,6 +210,7 @@ const SignUp: React.FC = () => {
                 }
                 inputProps={{
                   'data-cy': 'lastName',
+                  'data-testid': 'lastName',
                 }}
                 margin='normal'
                 name='lastName'
@@ -237,6 +239,7 @@ const SignUp: React.FC = () => {
                     }
                     inputProps={{
                       'data-cy': 'document',
+                      'data-testid': 'document',
                     }}
                     margin='normal'
                     name='document'
@@ -264,6 +267,7 @@ const SignUp: React.FC = () => {
                     }
                     inputProps={{
                       'data-cy': 'birthDate',
+                      'data-testid': 'birthDate',
                     }}
                     margin='normal'
                     required
@@ -280,6 +284,7 @@ const SignUp: React.FC = () => {
                 helperText={errors.email && touched.email && errors.email}
                 inputProps={{
                   'data-cy': 'email',
+                  'data-testid': 'email',
                 }}
                 margin='normal'
                 required
@@ -300,6 +305,7 @@ const SignUp: React.FC = () => {
                 }
                 inputProps={{
                   'data-cy': 'password',
+                  'data-testid': 'password',
                 }}
                 margin='normal'
                 required
@@ -319,6 +325,7 @@ const SignUp: React.FC = () => {
                 helperText={errors.role && touched.role && errors.role}
                 inputProps={{
                   'data-cy': 'role',
+                  'data-testid': 'role',
                 }}
                 margin='normal'
                 fullWidth
@@ -330,7 +337,11 @@ const SignUp: React.FC = () => {
                 onChange={handleChange}
                 value={values.role}>
                 {CONST_RULES.RULES.map(({ KEY, VALUE }) => (
-                  <MenuItem key={KEY} value={KEY} data-cy={KEY}>
+                  <MenuItem
+                    key={KEY}
+                    value={KEY}
+                    data-cy={KEY}
+                    data-testid='options'>
                     {VALUE}
                   </MenuItem>
                 ))}
@@ -342,6 +353,7 @@ const SignUp: React.FC = () => {
             fullWidth
             variant='contained'
             data-cy='submit'
+            data-testid='submit'
             sx={{ mt: 3, mb: 2 }}>
             Cadastrar
           </Button>

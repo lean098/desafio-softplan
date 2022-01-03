@@ -141,7 +141,7 @@ const Users: React.FC = () => {
         </Container>
       </Box>
       <Container sx={{ py: 8 }} maxWidth='md'>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} data-testid='users'>
           {Array.isArray(users) &&
             users
               .filter((user) => user.id !== loggedUser?.id)

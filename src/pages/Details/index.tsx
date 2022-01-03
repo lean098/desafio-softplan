@@ -80,6 +80,9 @@ const Details: React.FC = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 disabled
+                inputProps={{
+                  'data-testid': 'firstName',
+                }}
                 margin='normal'
                 name='firstName'
                 required
@@ -92,6 +95,9 @@ const Details: React.FC = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 disabled
+                inputProps={{
+                  'data-testid': 'lastName',
+                }}
                 margin='normal'
                 name='lastName'
                 required
@@ -104,6 +110,9 @@ const Details: React.FC = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 disabled
+                inputProps={{
+                  'data-testid': 'document',
+                }}
                 margin='normal'
                 name='document'
                 required
@@ -116,6 +125,9 @@ const Details: React.FC = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 disabled
+                inputProps={{
+                  'data-testid': 'birthDate',
+                }}
                 margin='normal'
                 name='birthDate'
                 required
@@ -128,6 +140,9 @@ const Details: React.FC = () => {
             <Grid item xs={12}>
               <TextField
                 disabled
+                inputProps={{
+                  'data-testid': 'email',
+                }}
                 margin='normal'
                 required
                 fullWidth
@@ -140,6 +155,9 @@ const Details: React.FC = () => {
             <Grid item xs={12}>
               <TextField
                 disabled
+                inputProps={{
+                  'data-testid': 'role',
+                }}
                 margin='normal'
                 fullWidth
                 id='role'

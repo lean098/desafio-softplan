@@ -153,6 +153,9 @@ const Profile: React.FC = () => {
             <Grid item xs={12}>
               <TextField
                 disabled
+                inputProps={{
+                  'data-testid': 'email',
+                }}
                 margin='normal'
                 required
                 autoFocus
@@ -165,6 +168,9 @@ const Profile: React.FC = () => {
             <Grid item xs={12}>
               <TextField
                 disabled
+                inputProps={{
+                  'data-testid': 'birthDate',
+                }}
                 margin='normal'
                 required
                 autoFocus

@@ -23,7 +23,7 @@ import {
   fireEvent,
 } from 'utils/testUtils';
 
-// Components
+// Pages
 import { Profile } from 'pages/Profile';
 
 const renderComponent = ({
@@ -50,7 +50,7 @@ describe('Profile', () => {
     loggedUser: defaultUser,
   };
 
-  it('should allow updated user password', async () => {
+  it('should render fields disabled with values', () => {
     renderComponent({
       loggedUser: mockUsers.loggedUser,
     });
@@ -59,6 +59,27 @@ describe('Profile', () => {
     expect(fullNameField).toBeInTheDocument();
     expect(fullNameField).toBeDisabled();
     expect(fullNameField.value).not.toBe('');
+    expect(fullNameField.value).toEqual(
+      `${mockUsers.loggedUser.firstName} ${mockUsers.loggedUser.lastName}`,
+    );
+
+    const emailField = screen.getByTestId('email') as HTMLInputElement;
+    expect(emailField).toBeInTheDocument();
+    expect(emailField).toBeDisabled();
+    expect(emailField.value).not.toBe('');
+    expect(emailField.value).toEqual(mockUsers.loggedUser.email);
+
+    const birthDateField = screen.getByTestId('birthDate') as HTMLInputElement;
+    expect(birthDateField).toBeInTheDocument();
+    expect(birthDateField).toBeDisabled();
+    expect(birthDateField.value).not.toBe('');
+    expect(birthDateField.value).toEqual(mockUsers.loggedUser.birthDate);
+  });
+
+  it('should allow updated user password', async () => {
+    renderComponent({
+      loggedUser: mockUsers.loggedUser,
+    });
 
     const newPasswordField = screen.getByTestId(
       'new-password',
